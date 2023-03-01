@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,13 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
+})->name('home');
+Route::prefix('cars')->group(function () {
+    Route::resource('cars', CarController::class);
+    Route::post('/store', [CarController::class, 'store'])->middleware(['auth'])->name('cars.store');
+
 });
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
