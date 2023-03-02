@@ -6,15 +6,19 @@ use App\Models\Car;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CarController extends Controller
 {
     public function index()
     {
+        $cars = Car::all();
+        $images = Media::all();
         return Inertia::render(
             'UsedCars',
             [
-                
+                'cars' => $cars,
+                'images' => $images
             ]
         );
 

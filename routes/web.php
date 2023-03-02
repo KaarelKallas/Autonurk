@@ -30,7 +30,7 @@ Route::prefix('cars')->group(function () {
     Route::post('/store', [CarController::class, 'store'])->middleware(['auth'])->name('cars.store');
 
 });
-
+Route::get('/kasutatud', [CarController::class, 'index'])->name('cars.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
