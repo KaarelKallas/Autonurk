@@ -12,6 +12,14 @@ const props = defineProps({
         default: () => ({}),
     },
 })
+function getImages(id, image) {
+    let imagesById = []
+    if (image.model_id = id) {
+        imagesById.push('/storage/' + image.order_column + '/' + image.file_name)
+    }
+    console.log(imagesById)
+    return imagesById
+}
 console.log(props.images)
 console.log(props.cars)
 
@@ -26,7 +34,7 @@ export default {
 
     <div v-for="car in cars">
         <div v-for="image in images">
-            <img :src="'/storage/' + image.order_column + '/' + image.file_name" alt="">
+            <img :src="getImages(car.id, image)">
         </div>
     </div>
 
